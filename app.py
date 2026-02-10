@@ -9,14 +9,21 @@ st.title("💰 极简版持仓热力图")
 
 # 2. 读取数据 (直接读取 GitHub 仓库里的 CSV)
 # 注意：在本地运行时，直接读取本地文件
-try:
-    # 记得把下面这个链接换成你自己的 Raw 链接！
-    url = "https://github.com/Dufuo/invest-dashboard/raw/refs/heads/main/portfolio.csv" 
-    df = pd.read_csv(url)
-except Exception as e:
-    st.error(f"读取数据失败，详细错误：{e}")
-    st.stop()
+# 1. 这里的 URL 保持不变
+url = "https://github.com/Dufuo/invest-dashboard/raw/refs/heads/main/portfolio.csv"
 
+# 2. 开始尝试读取
+try:
+    # 优先尝试 GBK (解决中文乱码常见问题)
+    df = pd.read_csv(url, encoding='gbk')
+except:
+    try:
+        # 如果 GBK 失败，再尝试 UTF-8-SIG
+        df = pd.read_csv(url, encoding='utf-8-sig')
+    except Exception as e:
+        # 如果两种都失败，才报错退出
+        st.error(f"读取数据失败，详细错误：{e}")
+        st.stop()
 # 3. 获取实时汇率 (美元 -> 人民币)
 usd_cny = yf.Ticker("CNY=X").history(period="1d")['Close'].iloc[-1]
 st.sidebar.write(f"当前美元汇率: {usd_cny:.2f}")
