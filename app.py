@@ -5,14 +5,14 @@ import plotly.express as px
 
 # 1. 页面设置
 st.set_page_config(page_title="我的投资热力图", layout="wide")
-st.title("💰 极简版持仓热力图")
+st.title("持仓")
 
 
 data = {
-'Ticker': ['NVDA', 'GOOG', '601899.SS', '002594.SZ'],
-'Market': ['US', 'US', 'CN', 'CN'],
-'Quantity': [10, 5, 1000, 500],
-'Cost_Price': [190.21, 120.50, 9.50, 250.00]
+'Ticker': ['RXRX',  '516650.SS'],
+'Market': ['US',  'CN'],
+'Quantity': [85, 1000],
+'Cost_Price': [4.22,  2]
 }
 df = pd.DataFrame(data)
 
