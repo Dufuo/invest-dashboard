@@ -11,7 +11,7 @@ st.title("💰 极简版持仓热力图")
 # 注意：在本地运行时，直接读取本地文件
 try:
     # 记得把下面这个链接换成你自己的 Raw 链接！
-    url = "https://raw.githubusercontent.com/Dufuo/invest-dashboard/main/portfolio.csv" 
+    url = "https://github.com/Dufuo/invest-dashboard/raw/refs/heads/main/portfolio.csv" 
     df = pd.read_csv(url)
 except Exception as e:
     st.error(f"读取数据失败，详细错误：{e}")
