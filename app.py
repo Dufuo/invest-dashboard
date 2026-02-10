@@ -10,9 +10,11 @@ st.title("💰 极简版持仓热力图")
 # 2. 读取数据 (直接读取 GitHub 仓库里的 CSV)
 # 注意：在本地运行时，直接读取本地文件
 try:
-    df = pd.read_csv("portfolio.csv")
-except:
-    st.error("找不到 portfolio.csv 文件，请检查！")
+    # 记得把下面这个链接换成你自己的 Raw 链接！
+    url = "https://raw.githubusercontent.com/Dufuo/invest-dashboard/main/portfolio.csv" 
+    df = pd.read_csv(url)
+except Exception as e:
+    st.error(f"读取数据失败，详细错误：{e}")
     st.stop()
 
 # 3. 获取实时汇率 (美元 -> 人民币)
