@@ -7,17 +7,15 @@ import plotly.express as px
 st.set_page_config(page_title="我的投资热力图", layout="wide")
 st.title("💰 极简版持仓热力图")
 
-try:
-    data = {
-    'Ticker': ['NVDA', 'GOOG', '601899.SS', '002594.SZ'],
-    'Market': ['US', 'US', 'CN', 'CN'],
-    'Quantity': [10, 5, 1000, 500],
-    'Cost_Price': [190.21, 120.50, 9.50, 250.00]
+
+data = {
+'Ticker': ['NVDA', 'GOOG', '601899.SS', '002594.SZ'],
+'Market': ['US', 'US', 'CN', 'CN'],
+'Quantity': [10, 5, 1000, 500],
+'Cost_Price': [190.21, 120.50, 9.50, 250.00]
 }
 df = pd.DataFrame(data)
-except:
-    st.error("找不到 portfolio.csv 文件，请检查！")
-    st.stop()
+
 
 # 3. 获取实时汇率 (美元 -> 人民币)
 usd_cny = yf.Ticker("CNY=X").history(period="1d")['Close'].iloc[-1]
